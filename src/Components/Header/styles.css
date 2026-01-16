@@ -1,0 +1,12 @@
+.headerBox {
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+    text-align: center;
+}
+
+.boxLogoHeader img {
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+}
