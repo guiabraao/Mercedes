@@ -7,6 +7,6 @@ import GSAP from './Components/GSAP/index.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Home />
+    <App />
   </StrictMode>,
 )
