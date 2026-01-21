@@ -30,7 +30,7 @@ html, body {
 
 .GsapIntroContainer{
     position: relative;
-    height: 100vh;
+    height: 300vh;
 }
 
 canvas{

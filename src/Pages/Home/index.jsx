@@ -18,15 +18,31 @@ import Banner3Section3 from '../../assets/bannerSection3.jpg'
 import { useState, useEffect, useRef } from 'react'
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLayoutEffect } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
 
+    useEffect(() => {
+        const onLoad = () => {
+            ScrollTrigger.refresh();
+        };
+
+        window.addEventListener("load", onLoad);
+
+        return () => window.removeEventListener("load", onLoad);
+    }, []);
+
+    gsap.config({
+        nullTargetWarn: false,
+        invalidateOnRefresh: true
+    });
+
     const containerRef = useRef(null);
     const panelsRef = useRef(null);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const container = containerRef.current;
         const panels = panelsRef.current;
         if (!container || !panels) return;
@@ -52,6 +68,7 @@ export default function Home() {
 
         return () => ctx.revert();
     }, []);
+
 
     const canvasRef = useRef(null)
 
@@ -291,7 +308,7 @@ export default function Home() {
                                         <p>Desde então, a marca se consolidou como referência mundial em inovação, luxo e engenharia de alta performance. Ao longo de sua história, a Mercedes-Benz foi responsável por importantes avanços tecnológicos, especialmente nas áreas de segurança, conforto e design, influenciando gerações de veículos.</p>
                                         <p>Com mais de um século de tradição, a Mercedes-Benz não fabrica apenas automóveis, mas representa pioneirismo, sofisticação e a constante busca pela excelência.</p>
                                     </div>
-                                    
+
                                     <div className="box2ContentBottom">
                                         <img src={Logo0} alt="" />
                                         <img src={Logo02} alt="" />
@@ -303,13 +320,13 @@ export default function Home() {
                                 <div className="bannerSection3">
                                     <img src={Banner2Section3} alt="" />
                                     <div className="contentBannerSection3">
-                                       <div className="txtSection3">
+                                        <div className="txtSection3">
                                             <h2>Because it's <br /> <span className='benz'>Mercedes-Benz.</span></h2>
                                             <p>Na Mercedes-Benz, nos empenhamos para superar os limites da pesquisa e do desenvolvimento. Testamos nossos veículos sob as condições mais exigentes, e somente os produtos que atendem aos nossos mais elevados padrões recebem o que é reconhecido em todo o mundo: a estrela da Mercedes-Benz.</p>
                                         </div>
                                     </div>
                                 </div>
-                                 <div className="bannerSection3">
+                                <div className="bannerSection3">
                                     <img src={Banner1Section3} alt="" />
                                     <div className="contentBannerSection3 banner2">
                                         <div className="txtSection3">
