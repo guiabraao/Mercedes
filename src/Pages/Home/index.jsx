@@ -24,20 +24,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
 
-    useEffect(() => {
-        const onLoad = () => {
-            ScrollTrigger.refresh();
-        };
-
-        window.addEventListener("load", onLoad);
-
-        return () => window.removeEventListener("load", onLoad);
-    }, []);
-
     gsap.config({
         nullTargetWarn: false,
         invalidateOnRefresh: true
     });
+
+    gsap.defaults({
+        ease: "none"
+    });
+
 
     const containerRef = useRef(null);
     const panelsRef = useRef(null);
@@ -47,27 +42,48 @@ export default function Home() {
         const panels = panelsRef.current;
         if (!container || !panels) return;
 
-        const getScrollAmount = () =>
-            panels.scrollWidth - window.innerWidth;
+        const images = panels.querySelectorAll("img");
 
-        const ctx = gsap.context(() => {
-            gsap.to(panels, {
-                x: () => -getScrollAmount(),
-                ease: "none",
-                scrollTrigger: {
-                    trigger: container,
-                    pin: true,
-                    scrub: 0.5,
-                    start: "top top",
-                    end: () => `+=${getScrollAmount()}`,
-                    invalidateOnRefresh: true,
-                    anticipatePin: 1,
-                },
-            });
-        }, container);
+        const waitForImages = () =>
+            Promise.all(
+                Array.from(images).map(
+                    (img) =>
+                        img.complete
+                            ? Promise.resolve()
+                            : new Promise((res) => {
+                                img.onload = img.onerror = res;
+                            })
+                )
+            );
 
-        return () => ctx.revert();
+        let ctx;
+
+        waitForImages().then(() => {
+            const getScrollAmount = () =>
+                panels.scrollWidth - window.innerWidth;
+
+            ctx = gsap.context(() => {
+                gsap.to(panels, {
+                    x: () => -getScrollAmount(),
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: container,
+                        pin: true,
+                        scrub: 0.5,
+                        start: "top top",
+                        end: () => `+=${getScrollAmount()}`,
+                        invalidateOnRefresh: true,
+                        anticipatePin: 1,
+                    },
+                });
+            }, container);
+
+            ScrollTrigger.refresh();
+        });
+
+        return () => ctx && ctx.revert();
     }, []);
+
 
 
     const canvasRef = useRef(null)

@@ -12,10 +12,6 @@ html, body {
   overflow-x: hidden;
 }
 
-[data-scroll-container] {
-  overflow: hidden;
-}
-
 /* ELementosUniversais */
 .turquesa{
     color: #0ABAB5;
@@ -343,6 +339,7 @@ canvas{
 
 .containerGSAP{
     margin-top: 3rem;
+    overflow: hidden;
 }
 
 .boxSectionBanner1{
