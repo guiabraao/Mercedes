@@ -30,7 +30,7 @@ html, body {
 
 .GsapIntroContainer{
     position: relative;
-    height: 300vh;
+    height: 100vh;
 }
 
 canvas{
@@ -220,9 +220,6 @@ canvas{
 /* FimTextIntroHome */
 
 /* ModelosHome */
-/* .containerHomeModelos{
-    min-height: 50vh;
-} */
 
 .txtModelos p{
     padding: 0rem 3rem;

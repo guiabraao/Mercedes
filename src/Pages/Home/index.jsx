@@ -348,9 +348,6 @@ export default function Home() {
             <div className="footer">
                 <img src={Logo01} alt="" />
             </div>
-
-
-
         </>
     )
 }
