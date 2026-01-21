@@ -33,7 +33,6 @@ export default function Home() {
         ease: "none"
     });
 
-
     const containerRef = useRef(null);
     const panelsRef = useRef(null);
 
@@ -135,7 +134,7 @@ export default function Home() {
                 end: "+=200%",
                 scrub: true,
                 pin: true,
-                pinSpacing: true, // deixa o espaço correto
+                pinSpacing: false,
             }
         });
 
