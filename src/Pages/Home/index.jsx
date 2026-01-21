@@ -169,8 +169,10 @@ export default function Home() {
                     <div className="boxContentGsapIntro">
                         <div className="contentGSAPIntro">
                             <div className="boxGSAPintro intro-1">
-                                <h1><span className='benz'>Mercedes-Benz</span></h1>
-                                <p>Inovação, desempenho e luxo em perfeita harmonia.</p>
+                                <div className="boxLeftIntro1">
+                                    <h1><span className='benz'>Mercedes-Benz</span></h1>
+                                    <p>Inovação, desempenho e luxo em perfeita harmonia.</p>
+                                </div>
                             </div>
                             <div className="boxGSAPintro intro-2">
                                 <h1>Mais do que um <span className='turquesa'>automóvel</span>.</h1>
